@@ -1,0 +1,28 @@
+<!-- javascript inside the html will be written inside the script tag 
+by using javasciprt we can create the h1 tag by the document.createElement("h1") and lets store that 
+in the variable call heading
+const heading=document.createElement("h1")
+lets put the hello world inside the heading by javasciprt like  heading.innerHTML="hello world" -->
+
+<!-- <div id="root"></div>  now we need to keep the heading tag inside the root.
+to put inside the root we need root in javasciprt for that use document.getElementById("root")
+const root=document.getElementById("root")  this root variablegives reference to the div tag
+now to put the heading in the root we have the function called appendchild().appendChild() is avaialbe
+on every html node
+root.appendChild(heading) -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello world by javascript</title>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script>
+            const heading=document.createElement("h1");
+            heading.innerHTML="Hello world"
+            const root=document.getElementById("root");
+            root.appendChild(heading);
+        </script>
+    </body>
+</html>
