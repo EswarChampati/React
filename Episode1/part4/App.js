@@ -6,20 +6,20 @@
 ///create the above struture
 
 
-//  const parent=React.createElement(
-//     "div",
-//     {id:"parent"},
-//     React.createElement(
-//         "div",
-//         {id:"child"},
-//         React.createElement(
-//             "h1",{},"i am h1 tag"
-//         )
-//     )
-// )
-// console.log(parent) //parent is a react element or a javascript object by the end of the day
-// const root=ReactDOM.createRoot(document.getElementById("root"))
-// root.render(parent)
+ const paren=React.createElement(
+    "div",
+    {id:"parent"},
+    React.createElement(
+        "div",
+        {id:"child"},
+        React.createElement(
+            "h1",{},"i am h1 tag"
+        )
+    )
+)
+console.log(paren) //parent is a react element or a javascript object by the end of the day
+const roo=ReactDOM.createRoot(document.getElementById("root"))
+roo.render(paren)
 
 
 
