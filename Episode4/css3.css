@@ -44,8 +44,9 @@ li{
     font-size: 17px;
 }
 .res-card{
-    height: 300px;
+    height: 350px;
     width:200px;
+    margin: 5px;
 }
 .res-card:hover{
     border: 1px solid black;
@@ -56,4 +57,9 @@ li{
 }
 .res-log{
     width:100%;
+}
+.restaurantcontainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
 }
