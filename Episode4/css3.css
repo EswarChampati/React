@@ -43,3 +43,17 @@ li{
     margin-right: 60px;
     font-size: 17px;
 }
+.res-card{
+    height: 300px;
+    width:200px;
+}
+.res-card:hover{
+    border: 1px solid black;
+    cursor: pointer;
+}
+.search{
+    padding: 20px;
+}
+.res-log{
+    width:100%;
+}

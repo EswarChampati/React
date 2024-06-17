@@ -8,7 +8,7 @@ import ReactDOM from "react-dom/client"
   body
      search
      restaurantcontainer
-      rstaurentcards
+      restaurentcards
   fotter
      copyrights
      links
@@ -41,11 +41,35 @@ const Header = ()=>{
         </div>
     )
 }
+ const Restaurentcard=() =>{
+    return (
+        <div className="res-card" style={{ backgroundColor:"#f0f0f0"}}>
+            <img className="res-log"
+             src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/ipq0vykg2bzsouxnjyrw" 
+             alt="image not found"></img>
+            <h3>Ajantha canteen</h3>
+            <h4>Dosa,idli,vada</h4>
+            <h4>4.2 star</h4>
+            <h4>40mins delivary time</h4>
+        </div>
+    )
+}
+const Body= ()=>{
+    return (
+        <div className="body">
+           <div className="search">search</div>
+           <div className="restaurantcontainer">
+              <Restaurentcard/>
+           </div>
+        </div>
+    )
+}
 
 const AppLayout= ()=> {
     return(
         <div className="app">
              <Header/>
+             <Body/>
         </div>
     )
 }
