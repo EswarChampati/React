@@ -1,40 +1,16 @@
 import Restaurentcard from "./Restaurentcard.jsx";
 import { useState, useEffect } from "react";
-
-// let listOfRestaurants = [{
-//     "info": {
-//         "id": "10582",
-//         "name": "Pizza Hut",
-//         "cloudinaryImageId": "2b4f62d606d1b2bfba9ba9e5386fabb7",
-//         "cuisines": [
-//             "Pizzas"
-//         ],
-//         "avgRating": 4.1,
-//         "sla": {
-//             "deliveryTime": 34
-//         }
-//     }
-// },
-// {
-//     "info": {
-//         "id": "10583",
-//         "name": "KFC",
-//         "cloudinaryImageId": "2b4f62d606d1b2bfba9ba9e5386fabb7",
-//         "cuisines": [
-//             "Pizzas", "sandwitch", "Burger"
-//         ],
-//         "avgRating": 3.8,
-//         "sla": {
-//             "deliveryTime": 40
-//         }
-//     }
-// }];
+import Shimmer from "./Shimmer.jsx";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurent] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [filteredRestaurents, setFilteredRestaurents] = useState();
+
   useEffect(() => {
     fetchData();
   }, []);
+  console.log("body rendered"); //this is to know about te onchange handler kep press rendering.
 
   const fetchData = async () => {
     const data = await fetch(
@@ -44,10 +20,36 @@ const Body = () => {
     const usefulData =
       json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     setListOfRestaurent(usefulData);
+    setFilteredRestaurents(usefulData); // because we are intializing filteredrestaurents with the emptydata.
   };
-  return (
+
+  return listOfRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="filter">
+        <div className="search">
+          <input
+            type="text"
+            className="search-box"
+            placeholder="enter the restaurent name"
+            value={searchText}
+            onChange={(inputText) => {
+              setSearchText(inputText.target.value);
+            }}
+          />
+          <button
+            onClick={() => {
+              filteredRestaurents = listOfRestaurants.filter(
+                (res) =>
+                  res.info.name.toLowerCase().includes(searchText.toLowerCase()) //to know res.info.name print the ueful data in async function to know what to use wheter res.info.name or anything
+              );
+              setFilteredRestaurents(filteredRestaurents);
+            }}
+          >
+            search
+          </button>
+        </div>
         <button
           className="filter-btn"
           onClick={() => {
@@ -62,8 +64,8 @@ const Body = () => {
         </button>
       </div>
       <div className="restaurantcontainer">
-        {listOfRestaurants.map((restaurant) => (
-          <Restaurentcard key={restaurant.info.id} data={restaurant} />
+        {filteredRestaurents.map((restaurant) => (
+          <Restaurentcard key={restaurant.info.id} data={restaurant} /> //everytime when the controller reaches here it render empty data since we dont have any data in the filtered restaurent in the absnece ofthis line setFilteredRestaurents(usefulData);.
         ))}
       </div>
     </div>
