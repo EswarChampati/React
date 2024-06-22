@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const [btnName, setBtnName] = useState("login");
   useEffect(() => {
-    console.log("useeffect called");
+    console.log("useeffect called"); //when there is a change in value of btnName then useeffect is called
   }, [btnName]);
 
   return (

@@ -1,6 +1,7 @@
 import Restaurentcard from "./Restaurentcard.jsx";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer.jsx";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurent] = useState([]);
@@ -64,7 +65,12 @@ const Body = () => {
       </div>
       <div className="restaurantcontainer">
         {filteredRestaurents.map((restaurant) => (
-          <Restaurentcard key={restaurant.info.id} data={restaurant} /> //everytime when the controller reaches here it render empty data since we dont have any data in the filtered restaurent in the absnece ofthis line setFilteredRestaurents(usefulData);.
+          <Link
+            to={"/restaurent/" + restaurant.info.id}
+            key={restaurant.info.id}
+          >
+            <Restaurentcard data={restaurant} />
+          </Link> //everytime when the controller reaches here it render empty data since we dont have any data in the filtered restaurent in the absnece ofthis line setFilteredRestaurents(usefulData);.
         ))}
       </div>
     </div>
