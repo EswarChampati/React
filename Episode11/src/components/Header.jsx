@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState, useContext } from "react";
 import { LOGO_URL, DROPDOWN_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext1 from "../utils/userContext";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("login");
-  useEffect(() => {
-    console.log("useeffect called"); //when there is a change in value of btnName then useeffect is called
-  }, [btnName]);
 
   const status = useOnlineStatus();
+
+  const { loggedInUser } = useContext(userContext1);
 
   return (
     <div className="flex justify-between border border-black">
@@ -53,6 +53,7 @@ const Header = () => {
               {btnName}
             </button>
           </li>
+          <li>{loggedInUser}</li>
         </ul>
       </div>
     </div>

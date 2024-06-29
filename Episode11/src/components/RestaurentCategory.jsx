@@ -1,6 +1,6 @@
 import ItemList from "./ItemList";
 
-const RestaurentCategory = ({ data, showItems, setShowIndex }) => {
+const RestaurentCategory = ({ data, showItems, setShowIndex, dummy }) => {
   //console.log(data);
   return (
     <div>
@@ -14,7 +14,7 @@ const RestaurentCategory = ({ data, showItems, setShowIndex }) => {
           </span>
           <span className="m-2">{"⮟"}</span>
         </div>
-        {showItems && <ItemList items={data.itemCards} />}
+        {showItems && <ItemList items={data.itemCards} dummy={dummy} />}
       </div>
     </div>
   );

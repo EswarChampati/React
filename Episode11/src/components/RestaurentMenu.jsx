@@ -11,16 +11,15 @@ const RestaurentMenu = () => {
 
   const resInfo = useRestaurentMenu(resId);
 
+  const dummy = "dummy data";
+
   if (resInfo === null) return <Shimmer />;
-  //console.log(resInfo);
 
   const restaurantInfo = resInfo?.data?.cards[2]?.card?.card?.info;
   const itemCards =
     resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
       ?.card?.itemCards;
-  // console.log(
-  //   resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
-  // );
+
   const section =
     resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (obj) => {
@@ -30,10 +29,8 @@ const RestaurentMenu = () => {
         );
       }
     );
-  // console.log(section);
 
-  const { name, cuisines, costForTwoMessage, avgRating, sla } =
-    restaurantInfo || {};
+  const { name, cuisines } = restaurantInfo || {};
 
   return (
     <div className="text-center">
@@ -45,6 +42,7 @@ const RestaurentMenu = () => {
           data={category?.card?.card}
           showItems={showIndex === index}
           setShowIndex={() => setShowIndex(index)}
+          dummy={dummy}
         />
       ))}
     </div>

@@ -1,8 +1,9 @@
 import Restaurentcard, { WillOpenLabel } from "./Restaurentcard.jsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer.jsx";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus.jsx";
+import userContext1 from "../utils/userContext.js";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurent] = useState([]);
@@ -15,7 +16,6 @@ const Body = () => {
     fetchData();
   }, []);
 
-  //console.log(listOfRestaurants);
   const fetchData = async () => {
     const data = await fetch(
       "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
@@ -28,6 +28,9 @@ const Body = () => {
   };
 
   const onlineStatus = useOnlineStatus();
+
+  const { loggedInUser, setUserName } = useContext(userContext1);
+
   if (onlineStatus === false)
     return <h1>looks like you are offline || check our internet connection</h1>;
 
@@ -71,6 +74,17 @@ const Body = () => {
         >
           Top rated restaurents
         </button>
+        <div>
+          <label className="mr-3 text-xl text-gray-600 font-semibold">
+            Username
+          </label>
+          <input
+            className="search-box px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter the username"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </div>
       <div className="flex flex-wrap">
         {filteredRestaurents.map((restaurant) => (
