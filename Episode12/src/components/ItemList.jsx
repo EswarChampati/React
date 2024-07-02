@@ -1,13 +1,14 @@
 import { PORTION_IMAGE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import addItem from "../utils/cartSlice";
+import { addItem } from "../utils/cartSlice";
 
 const ItemList = ({ items }) => {
-  const dis = useDispatch();
+  const dispatch = useDispatch();
 
-  const handleAddItem = () => {
+  const handleAddItem = (item) => {
     //dispatch an action
-    dis(addItem("SandWitch"));
+    // console.log(item);
+    dispatch(addItem(item));
   };
   return (
     <div>
@@ -33,7 +34,7 @@ const ItemList = ({ items }) => {
             <div className="absolute">
               <button
                 className="p-2 shadow-lg text-white font-bold rounded-lg bg-gray-600"
-                onClick={handleAddItem}
+                onClick={() => handleAddItem(item)}
               >
                 Add+
               </button>
